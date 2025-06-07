@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+  
+  /* Custom honey and forest colors */
+  --honey-50: hsl(48, 100%, 94%);
+  --honey-100: hsl(48, 100%, 88%);
+  --honey-200: hsl(45, 100%, 80%);
+  --honey-300: hsl(41, 100%, 71%);
+  --honey-400: hsl(38, 100%, 64%);
+  --honey-500: hsl(33, 94%, 57%);
+  --honey-600: hsl(32, 100%, 70%);
+  --honey-700: hsl(36, 100%, 50%);
+  --honey-800: hsl(35, 100%, 44%);
+  --honey-900: hsl(33, 100%, 37%);
+  
+  --forest-50: hsl(88, 50%, 95%);
+  --forest-100: hsl(87, 40%, 86%);
+  --forest-200: hsl(88, 34%, 75%);
+  --forest-300: hsl(87, 25%, 64%);
+  --forest-400: hsl(87, 19%, 53%);
+  --forest-500: hsl(86, 25%, 23%);
+  --forest-600: hsl(87, 31%, 41%);
+  --forest-700: hsl(88, 38%, 28%);
+  --forest-800: hsl(88, 50%, 21%);
+  --forest-900: hsl(88, 60%, 11%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .font-heading {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .font-body {
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .text-honey-50 { color: var(--honey-50); }
+  .text-honey-100 { color: var(--honey-100); }
+  .text-honey-200 { color: var(--honey-200); }
+  .text-honey-300 { color: var(--honey-300); }
+  .text-honey-400 { color: var(--honey-400); }
+  .text-honey-500 { color: var(--honey-500); }
+  .text-honey-600 { color: var(--honey-600); }
+  .text-honey-700 { color: var(--honey-700); }
+  .text-honey-800 { color: var(--honey-800); }
+  .text-honey-900 { color: var(--honey-900); }
+  
+  .bg-honey-50 { background-color: var(--honey-50); }
+  .bg-honey-100 { background-color: var(--honey-100); }
+  .bg-honey-200 { background-color: var(--honey-200); }
+  .bg-honey-300 { background-color: var(--honey-300); }
+  .bg-honey-400 { background-color: var(--honey-400); }
+  .bg-honey-500 { background-color: var(--honey-500); }
+  .bg-honey-600 { background-color: var(--honey-600); }
+  .bg-honey-700 { background-color: var(--honey-700); }
+  .bg-honey-800 { background-color: var(--honey-800); }
+  .bg-honey-900 { background-color: var(--honey-900); }
+  
+  .border-honey-200 { border-color: var(--honey-200); }
+  .border-honey-500 { border-color: var(--honey-500); }
+  
+  .hover\:bg-honey-600:hover { background-color: var(--honey-600); }
+  .hover\:text-honey-600:hover { color: var(--honey-600); }
+  .hover\:text-honey-400:hover { color: var(--honey-400); }
+  
+  .focus\:ring-honey-500:focus { --tw-ring-color: var(--honey-500); }
+  .focus\:border-honey-500:focus { border-color: var(--honey-500); }
+}
