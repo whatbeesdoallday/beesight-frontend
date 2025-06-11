@@ -22,8 +22,8 @@ export default function Livestream() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="text-center mb-12">
-        <h1 className="font-heading text-4xl font-bold text-gray-800 mb-4">Live Bee Stream</h1>
-        <p className="text-xl text-gray-600">Watch our bees in action 24/7</p>
+        <h1 className="font-heading text-4xl font-bold text-gray-800 mb-4">Live from the Hive</h1>
+        <p className="text-xl text-gray-600">All Day, All Night, All Season</p>
       </div>
       
       <div className="grid lg:grid-cols-3 gap-8">
@@ -36,9 +36,7 @@ export default function Livestream() {
             <CardContent className="p-6">
               <h3 className="font-heading text-xl font-semibold text-gray-800 mb-4">About This Stream</h3>
               <p className="text-gray-600 mb-4">
-                This live feed comes directly from our observation hive, equipped with a high-definition 
-                camera positioned to capture the entrance and main activity areas. The stream runs 24/7, 
-                allowing you to observe natural bee behavior patterns throughout different times of day.
+                A front-row seat to the comings and goings of hive life. The camera runs 24/7 so you can watch the rhythm of the colony unfold — from pollen-packed landings to the occasional wasp being chased off. They’re busy. You’re still. Somehow, it’s hard to look away.
               </p>
               <div className="flex flex-wrap gap-2">
                 <Badge className="bg-honey-100 text-honey-700">HD Quality</Badge>
@@ -112,11 +110,11 @@ export default function Livestream() {
                 </li>
                 <li className="flex items-start">
                   <div className="w-2 h-2 bg-honey-400 rounded-full mt-2 mr-2 flex-shrink-0" />
-                  Communication dances
+                  Young bees taking orientation flights
                 </li>
                 <li className="flex items-start">
                   <div className="w-2 h-2 bg-honey-400 rounded-full mt-2 mr-2 flex-shrink-0" />
-                  Wing fanning for temperature control
+                  The odd wasp getting shown the way out
                 </li>
               </ul>
             </CardContent>

@@ -11,8 +11,7 @@ export default function Footer() {
               <span className="font-heading font-bold text-lg">WhatBeesDoAllDay</span>
             </div>
             <p className="text-gray-400 leading-relaxed">
-              Advancing bee research through innovative computer vision technology and 
-              promoting pollinator conservation through education and community engagement.
+              WhatBeesDoAllDay is a personal project sharing hive life through livestreams, bee counting, and curiosity. It’s not commercial — just something worth watching.
             </p>
           </div>
           <div>
@@ -30,7 +29,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/bee-counter">
-                  <button className="hover:text-honey-400 transition-colors">Technology</button>
+                  <button className="hover:text-honey-400 transition-colors">BeeBot</button>
                 </Link>
               </li>
               <li>
@@ -55,15 +54,15 @@ export default function Footer() {
                 <a href="#" className="hover:text-honey-400 transition-colors">Seeds</a>
               </li>
               <li>
-                <a href="#" className="hover:text-honey-400 transition-colors">Gift Sets</a>
+                <a href="#" className="hover:text-honey-400 transition-colors">Merch</a>
               </li>
             </ul>
           </div>
           <div>
             <h3 className="font-heading font-semibold text-lg mb-4">Contact</h3>
             <div className="space-y-2 text-gray-400">
-              <p>contact@whatbeesdoallday.com</p>
-              <p>+1 (555) 123-4567</p>
+              <p>Got questions or want to reach out?</p>
+              <p>Best way is through YouTube or socials</p>
               <div className="flex space-x-4 mt-4">
                 <a href="#" className="text-gray-400 hover:text-honey-400 transition-colors">
                   <span className="sr-only">Twitter</span>

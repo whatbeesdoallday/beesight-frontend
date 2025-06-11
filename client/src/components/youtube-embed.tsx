@@ -4,7 +4,7 @@ interface YoutubeEmbedProps {
 }
 
 export default function YoutubeEmbed({ 
-  videoId = "YOUR_VIDEO_ID", 
+  videoId = "OCR8KcxFzCk", 
   title = "Live Bee Stream" 
 }: YoutubeEmbedProps) {
   // If no video ID is provided, show placeholder
