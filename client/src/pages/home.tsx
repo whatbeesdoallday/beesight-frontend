@@ -1,11 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
-import { Video, Brain, ChartLine, ShoppingCart, Play } from "lucide-react";
+import { Video, Brain, ChartLine, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { LineChart, Line, XAxis, YAxis, ResponsiveContainer } from "recharts";
-import { useQuery } from "@tanstack/react-query";
-import { Tooltip } from "recharts";
+import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, Tooltip } from "recharts";
+import React from "react";
 
 import type { BeeStatistics } from "@shared/schema";
 
@@ -137,121 +136,70 @@ export default function Home() {
         </div>
       </section>
 
-/* ---------- LIVE STATS HOOKS ---------- */
-import { useQuery } from "@tanstack/react-query";
-import {
-  LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer,
-} from "recharts";
+      {/* Live Bee Activity Section */}
+      <section className="py-20 bg-honey-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="font-heading text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
+                Real-Time Bee Activity
+              </h2>
+              <p className="text-lg text-gray-600 mb-8">
+                Every time a bee enters or leaves the hive it's counted,
+                giving a live pulse of the colony.
+              </p>
 
-/** Raw URLs to your GitHub-Pages JSON (keep them in one place) */
-const BASE =
-  "https://whatbeesdoallday.github.io/beebot_data/docs";
-const URL_STATS  = `${BASE}/today_stats.json`;
-const URL_HOURLY = `${BASE}/hourly_summary.json`;
+              <div className="grid grid-cols-2 gap-6">
+                <Card className="p-4 shadow-sm">
+                  <CardContent className="pt-0">
+                    <div className="text-2xl font-bold text-honey-600">
+                      {latestStats?.beeCount ?? "—"}
+                    </div>
+                    <div className="text-sm text-gray-600">Bees Now</div>
+                  </CardContent>
+                </Card>
 
-/** generic fetcher */
-const fetchJson = (url: string) =>
-  fetch(url, { cache: "no-cache" }).then(r => r.json());
+                <Card className="p-4 shadow-sm">
+                  <CardContent className="pt-0">
+                    <div className="text-2xl font-bold text-honey-600">
+                      {allStats?.length ?? "—"}
+                    </div>
+                    <div className="text-sm text-gray-600">Records Today</div>
+                  </CardContent>
+                </Card>
+              </div>
 
-/** -------------  COMPONENT ------------- */
-export default function LiveBeeSection() {
-  /* 1️⃣  Tiles: total today & bees/min */
-  const { data: stats } = useQuery(
-    ["today-stats"], () => fetchJson(URL_STATS), { refetchInterval: 90_000 }
-  );
-
-  /* 2️⃣  Chart data: today vs yesterday */
-  const { data: hourly } = useQuery(
-    ["hourly-summary"], () => fetchJson(URL_HOURLY), { refetchInterval: 90_000 }
-  );
-
-  /* transform for Recharts */
-  const chartData = React.useMemo(() => {
-    if (!hourly) return [];
-    const today   = hourly.today ?? {};
-    const yest    = hourly.yesterday ?? {};
-    const hours   = Object.keys({ ...today, ...yest }).sort();   // "00:00", …
-    return hours.map(h => ({
-      hour: h.replace(":00", " "),     // label looks nicer
-      today: today[h]     ?? 0,
-      yesterday: yest[h]  ?? 0,
-    }));
-  }, [hourly]);
-
-  return (
-    <section className="py-20 bg-honey-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* ---------- TEXT + METRIC TILES ---------- */}
-          <div>
-            <h2 className="font-heading text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
-              Real-Time Bee Activity
-            </h2>
-            <p className="text-lg text-gray-600 mb-8">
-              Every time a bee enters or leaves the hive it’s counted,
-              giving a live pulse of the colony.
-            </p>
-
-            <div className="grid grid-cols-2 gap-6">
-              <Card className="p-4 shadow-sm">
-                <CardContent className="pt-0">
-                  <div className="text-2xl font-bold text-honey-600">
-                    {stats?.total_today ?? "—"}
-                  </div>
-                  <div className="text-sm text-gray-600">Bees Today</div>
-                </CardContent>
-              </Card>
-
-              <Card className="p-4 shadow-sm">
-                <CardContent className="pt-0">
-                  <div className="text-2xl font-bold text-honey-600">
-                    {stats?.bees_this_minute ?? "—"}
-                  </div>
-                  <div className="text-sm text-gray-600">Per Minute</div>
-                </CardContent>
-              </Card>
+              <Link href="/statistics">
+                <Button className="mt-6 bg-honey-500 hover:bg-honey-600 text-white">
+                  View Full Statistics
+                </Button>
+              </Link>
             </div>
 
-            <Link href="/statistics">
-              <Button className="mt-6 bg-honey-500 hover:bg-honey-600 text-white">
-                View Full Statistics
-              </Button>
-            </Link>
+            <Card className="p-6 shadow-lg">
+              <CardContent>
+                <div className="h-80">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={chartData}>
+                      <XAxis dataKey="time" />
+                      <YAxis />
+                      <Tooltip />
+                      <Line
+                        type="monotone"
+                        dataKey="bees"
+                        stroke="#D97706"
+                        strokeWidth={2}
+                        dot={false}
+                        name="Bee Count"
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              </CardContent>
+            </Card>
           </div>
-
-          {/* ----------------- CHART ----------------- */}
-          <Card className="p-6 shadow-lg">
-            <CardContent>
-              <div className="h-80">
-                <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={chartData}>
-                    <XAxis dataKey="hour" />
-                    <YAxis />
-                    <Tooltip />
-                    <Line
-                      type="monotone"
-                      dataKey="today"
-                      stroke="var(--honey-500)"
-                      strokeWidth={2}
-                      dot={false}
-                      name="Today"
-                    />
-                    <Line
-                      type="monotone"
-                      dataKey="yesterday"
-                      stroke="var(--honey-300)"
-                      strokeWidth={2}
-                      dot={false}
-                      name="Yesterday"
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
-            </CardContent>
-          </Card>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
-
